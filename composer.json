@@ -1,0 +1,16 @@
+{
+    "name": "deebz/framework",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Deebz\\Framework\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Deebz",
+            "email": "projects@deebz.dev"
+        }
+    ],
+    "require": {}
+}
