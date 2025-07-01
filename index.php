@@ -9,5 +9,4 @@ spl_autoload_register(function ($class) {
     }
 });
 
-$main = new Main();
-$main->run();
+$app = new App(new Framework);

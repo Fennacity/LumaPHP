@@ -3,7 +3,7 @@
 use Database\Connection;
 use Routing\Routes;
 
-class Main
+class Framework
 {
     private $dbConnection;
 
