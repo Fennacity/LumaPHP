@@ -2,10 +2,17 @@
 
 spl_autoload_register(function ($class) {
     $base_dir = __DIR__ . "/src/";
-    $file = $base_dir . str_replace("\\", "/", $class) . ".php";
+    $framework_dir = $base_dir . "Framework/";
 
-    if (file_exists($file)) {
-        require $file;
+    $appBase = $base_dir . str_replace("\\", "/", $class) . ".php";
+    $frameworkBase = $framework_dir . str_replace("\\", "/", $class) . ".php";
+
+    if (file_exists($appBase)) {
+        require $appBase;
+    } elseif (file_exists($frameworkBase)) {
+        require $frameworkBase;
+    } else {
+        throw new Exception("Class $class not found.");
     }
 });
 

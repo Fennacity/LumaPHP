@@ -2,6 +2,7 @@
 
 use Database\Connection;
 use Routing\Routes;
+use Authentication\Authentication;
 
 class Framework
 {
