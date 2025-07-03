@@ -1,8 +1,8 @@
 <?php
 
-namespace Authentication;
+namespace App\Framework\Authentication;
 
-class Authentication
+class Auth
 {
     private $users = [];
 

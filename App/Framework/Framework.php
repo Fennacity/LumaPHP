@@ -1,8 +1,10 @@
 <?php
 
-use Database\Connection;
-use Routing\Routes;
-use Authentication\Authentication;
+namespace App\Framework;
+
+use App\Framework\Database\Connection;
+use App\Framework\Routing\Routes;
+use App\Framework\Authentication\Auth;
 
 class Framework
 {

@@ -1,7 +1,10 @@
 <?php
 
+use App\App;
+use App\Framework\Framework;
+
 spl_autoload_register(function ($class) {
-    $base_dir = __DIR__ . "/src/";
+    $base_dir = __DIR__ . "/";
     $framework_dir = $base_dir . "Framework/";
 
     $appBase = $base_dir . str_replace("\\", "/", $class) . ".php";
