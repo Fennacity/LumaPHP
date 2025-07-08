@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Framework\Authentication;
+namespace Framework\Authentication;
 
 class Auth
 {

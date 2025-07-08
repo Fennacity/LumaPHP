@@ -2,7 +2,7 @@
 
 namespace App;
 
-use App\Framework\Framework;
+use Framework\Framework;
 
 class App
 {

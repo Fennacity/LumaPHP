@@ -1,10 +1,8 @@
 <?php
 
-namespace App\Framework;
+namespace Framework;
 
-use App\Framework\Database\Connection;
-use App\Framework\Routing\Routes;
-use App\Framework\Authentication\Auth;
+use Framework\Database\Connection;
 use Dotenv\Dotenv;
 
 class Framework
