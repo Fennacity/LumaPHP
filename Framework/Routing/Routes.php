@@ -19,14 +19,4 @@ class Routes
     {
         return $this->routes;
     }
-
-    public function findRoute($method, $path)
-    {
-        foreach ($this->routes as $route) {
-            if ($route['method'] === strtoupper($method) && $route['path'] === $path) {
-                return $route['handler'];
-            }
-        }
-        return null;
-    }
 }

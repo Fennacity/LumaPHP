@@ -11,7 +11,7 @@ class Framework
 
     private function loadEnvironmentVariables()
     {
-        $dotenv = Dotenv::createImmutable(__DIR__ . '/../../');
+        $dotenv = Dotenv::createImmutable(__DIR__ . '/../');
         $dotenv->load();
     }
 
@@ -19,7 +19,5 @@ class Framework
     {
         $this->loadEnvironmentVariables();
         $this->dbConnection = new Connection($_ENV['DB_HOST'], $_ENV['DB_USER'], $_ENV['DB_PASSWORD'], $_ENV['DB_NAME']);
-
-        echo "Application is running...\n";
     }
 }

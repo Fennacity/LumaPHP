@@ -1,0 +1,16 @@
+<?php
+
+namespace App\Controllers;
+
+use Framework\Templating\Template;
+
+class PostController extends Controller
+{
+    public function index()
+    {
+        return Template::render('post/index.html.twig', [
+            'title' => 'Welcome to the Post Page',
+            'message' => 'This is the post page of our application.'
+        ]);
+    }
+}
