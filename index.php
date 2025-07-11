@@ -1,8 +1,8 @@
 <?php
 
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
+error_reporting($_ENV['ERROR_REPORTING']);
+ini_set('display_errors', $_ENV['DISPLAY_ERRORS']);
+ini_set('display_startup_errors', $_ENV['DISPLAY_STARTUP_ERRORS']);
 
 require_once __DIR__ . '/vendor/autoload.php';
 
