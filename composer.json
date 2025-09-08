@@ -1,5 +1,5 @@
 {
-    "name": "deebz/framework",
+    "name": "fennacity/framework",
     "type": "project",
     "autoload": {
         "psr-4": {
@@ -9,8 +9,8 @@
     },
     "authors": [
         {
-            "name": "Deebz",
-            "email": "projects@deebz.dev"
+            "name": "Fennacity",
+            "email": "contact@fenncade.com"
         }
     ],
     "require": {
