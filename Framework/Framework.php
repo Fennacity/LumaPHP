@@ -15,6 +15,11 @@ class Framework
         $dotenv->load();
     }
 
+    public function getDbConnection()
+    {
+        return $this->dbConnection;
+    }
+
     public function run()
     {
         $this->loadEnvironmentVariables();
