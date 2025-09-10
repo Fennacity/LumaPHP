@@ -2,7 +2,7 @@
 
 use Framework\Framework;
 
-class Model 
+class Model implements ModelInterface
 {
     protected $db;
 

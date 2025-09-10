@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use Framework\Templating\Template;
 
-class HomeController extends Controller
+class HomeController implements ControllerInterface
 {
     public function index()
     {
