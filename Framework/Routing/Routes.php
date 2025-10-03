@@ -6,7 +6,7 @@ class Routes
 {
     private $routes = [];
 
-    public function addRoute($method, $path, $handler)
+    public function addRoute(string $method, string $path, string $handler): void
     {
         $this->routes[] = [
             'method' => strtoupper($method),
@@ -15,7 +15,7 @@ class Routes
         ];
     }
 
-    public function getRoutes()
+    public function getRoutes(): array
     {
         return $this->routes;
     }

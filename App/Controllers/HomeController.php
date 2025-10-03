@@ -6,9 +6,9 @@ use Framework\Templating\Template;
 
 class HomeController implements ControllerInterface
 {
-    public function index()
+    public function index() : string
     {
-        return Template::render('home/index.html.twig', [
+        return Template::render('/home/index.html.twig', [
             'title' => 'Welcome to the Home Page',
             'message' => 'This is the home page of our application.'
         ]);

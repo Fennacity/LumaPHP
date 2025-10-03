@@ -6,7 +6,7 @@ class Auth
 {
     private $users = [];
 
-    public function register($username, $password)
+    public function register(string $username, string $password): string
     {
         if (isset($this->users[$username])) {
             throw new \Exception("User already exists.");
@@ -15,7 +15,7 @@ class Auth
         return "User registered successfully.";
     }
 
-    public function login($username, $password)
+    public function login(string $username, string $password): string
     {
         if (!isset($this->users[$username]) || !password_verify($password, $this->users[$username])) {
             throw new \Exception("Invalid username or password.");

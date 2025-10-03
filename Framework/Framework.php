@@ -9,7 +9,7 @@ class Framework
 {
     private $dbConnection;
 
-    private function loadEnvironmentVariables()
+    private function loadEnvironmentVariables(): void
     {
         $dotenv = Dotenv::createImmutable(__DIR__ . '/../');
         $dotenv->load();
@@ -20,7 +20,7 @@ class Framework
         return $this->dbConnection;
     }
 
-    public function run()
+    public function run(): void
     {
         $this->loadEnvironmentVariables();
         $this->dbConnection = new Connection($_ENV['DB_HOST'], $_ENV['DB_USER'], $_ENV['DB_PASSWORD'], $_ENV['DB_NAME']);

@@ -6,9 +6,9 @@ use Framework\Templating\Template;
 
 class PostController implements ControllerInterface
 {
-    public function index()
+    public function index() : string
     {
-        return Template::render('post/index.html.twig', [
+        return Template::render('/post/index.html.twig', [
             'title' => 'Welcome to the Post Page',
             'message' => 'This is the post page of our application.'
         ]);

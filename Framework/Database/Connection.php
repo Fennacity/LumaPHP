@@ -17,7 +17,7 @@ class Connection
         $this->database = $database;
     }
 
-    public function connect()
+    public function connect(): void
     {
         echo "Connecting to database at {$this->host}...\n";
     }

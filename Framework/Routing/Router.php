@@ -11,7 +11,7 @@ class Router
         $this->routes = $routes->getRoutes();
     }
 
-    public function dispatch($method, $uri)
+    public function dispatch(string $method, string $uri)
     {
         foreach ($this->routes as $route) {
             if ($route['method'] === $method && $route['path'] === $uri) {
