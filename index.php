@@ -9,8 +9,8 @@ $dotenv->load();
 
 // Import necessary classes
 use App\App;
-use Framework\Framework;
-use Framework\Routing\Router;
+use Luma\Framework;
+use Luma\Routing\Router;
 
 // Get the base path from environment variables (used for routing and URLs)
 $basePath = '/' . $_ENV['BASE_PATH'] ?? '';

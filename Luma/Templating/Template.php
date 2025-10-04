@@ -1,6 +1,6 @@
 <?php
 
-namespace Framework\Templating;
+namespace Luma\Templating;
 
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;

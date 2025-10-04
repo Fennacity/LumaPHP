@@ -2,7 +2,7 @@
 
 namespace App;
 
-use Framework\Framework;
+use Luma\Framework;
 
 class App
 {

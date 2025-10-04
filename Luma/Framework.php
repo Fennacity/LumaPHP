@@ -1,8 +1,8 @@
 <?php
 
-namespace Framework;
+namespace Luma;
 
-use Framework\Database\Connection;
+use Luma\Database\Connection;
 
 class Framework
 {

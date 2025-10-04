@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-use Framework\Templating\Template;
+use Luma\Templating\Template;
 
 class HomeController implements ControllerInterface
 {

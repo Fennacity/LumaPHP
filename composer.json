@@ -1,16 +1,16 @@
 {
-    "name": "fennacity/framework",
+    "name": "beurskensdylan/lumaphp",
     "type": "project",
     "autoload": {
         "psr-4": {
             "App\\": "App/",
-            "Framework\\": "Framework/"
+            "Luma\\": "Luma/"
         }
     },
     "authors": [
         {
-            "name": "Fennacity",
-            "email": "contact@fenncade.com"
+            "name": "Dylan Beurskens",
+            "email": "info@dylanbeurskens.nl"
         }
     ],
     "require": {

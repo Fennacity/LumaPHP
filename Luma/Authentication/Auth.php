@@ -1,6 +1,6 @@
 <?php
 
-namespace Framework\Authentication;
+namespace Luma\Authentication;
 
 class Auth
 {

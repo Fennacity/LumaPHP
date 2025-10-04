@@ -1,6 +1,6 @@
 <?php
 
-namespace Framework\Routing;
+namespace Luma\Routing;
 
 class Routes
 {

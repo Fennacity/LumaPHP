@@ -1,6 +1,6 @@
 <?php
 
-use Framework\Framework;
+use Luma\Framework;
 
 class Model implements ModelInterface
 {

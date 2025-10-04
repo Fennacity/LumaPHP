@@ -1,6 +1,6 @@
 <?php
 
-use Framework\Routing\Routes;
+use Luma\Routing\Routes;
 
 $routes = new Routes();
 
