@@ -3,26 +3,34 @@
 namespace Framework;
 
 use Framework\Database\Connection;
-use Dotenv\Dotenv;
 
 class Framework
 {
+    // Holds the database connection instance
     private $dbConnection;
 
-    private function loadEnvironmentVariables(): void
+    /**
+     * Returns the current database connection instance.
+     *
+     * @return Connection|null
+     */
+    public static function getDbConnection()
     {
-        $dotenv = Dotenv::createImmutable(__DIR__ . '/../');
-        $dotenv->load();
+        return self::$dbConnection;
     }
 
-    public function getDbConnection()
-    {
-        return $this->dbConnection;
-    }
-
+    /**
+     * Initializes the framework.
+     * Establishes a database connection using environment variables.
+     */
     public function run(): void
     {
-        $this->loadEnvironmentVariables();
-        $this->dbConnection = new Connection($_ENV['DB_HOST'], $_ENV['DB_USER'], $_ENV['DB_PASSWORD'], $_ENV['DB_NAME']);
+        // Create a new database connection using credentials from .env
+        $this->dbConnection = new Connection(
+            $_ENV['DB_HOST'],
+            $_ENV['DB_USER'],
+            $_ENV['DB_PASSWORD'],
+            $_ENV['DB_NAME']
+        );
     }
 }

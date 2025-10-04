@@ -13,4 +13,12 @@ class PostController implements ControllerInterface
             'message' => 'This is the post page of our application.'
         ]);
     }
+
+    public function show(int $id) : string
+    {
+        return Template::render('/post/show.html.twig', [
+            'title' => 'Post Details',
+            'message' => "Details for post with ID: $id"
+        ]);
+    }
 }

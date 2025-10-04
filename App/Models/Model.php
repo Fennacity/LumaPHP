@@ -4,10 +4,10 @@ use Framework\Framework;
 
 class Model implements ModelInterface
 {
-    protected $db;
+    protected $database;
 
-    public function __construct(Framework $framework)
+    public function __construct()
     {
-        $this->db = $framework->getDbConnection();
+        $this->database = Framework::getDbConnection();
     }
 }
