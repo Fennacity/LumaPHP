@@ -2,6 +2,8 @@
 
 namespace Luma\Database;
 
+use PDO;
+
 class Connection
 {
     // Database connection properties
@@ -36,23 +38,31 @@ class Connection
      * table name and columns, then executes it using PDO. It outputs a message indicating
      * the table creation attempt.
      */
-    public function createTable(string $tableName, array $columns): void
+    public static function createTable(string $tableName, array $columns): void
     {
         $query = "CREATE TABLE IF NOT EXISTS $tableName (" . implode(", ", $columns) . ")";
 
-        $db = new \PDO("mysql:host={$this->host};dbname={$this->database}", $this->username, $this->password);
+        $db = self::connect();
         $db->exec($query);
-        $db = null; // Close the connection
-       
-        echo "Creating table '$tableName' with columns: " . implode(", ", $columns) . "\n";
+        $db = self::destroyConnection($db);
     }
 
     /**
-     * Simulates connecting to the database.
-     * In a real implementation, this would establish a DB connection.
+     * Establising connection to the database.
      */
-    public function connect(): void
+    public function connect(): \PDO
     {
-        echo "Connecting to database at {$this->host}...\n";
+        return new \PDO("mysql:host={$this->host};dbname={$this->database}", $this->username, $this->password);
+    }
+
+    /**
+     * Destroys connection to the database.
+     * @param PDO $connection The database connection variable.
+     */
+    public static function destroyConnection(PDO $connection)
+    {
+        if($connection !== null) {
+            return null;
+        }
     }
 }
