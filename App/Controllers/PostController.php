@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use Luma\Templating\Template;
+use Luma\API\API;
 
 class PostController implements ControllerInterface
 {
@@ -16,9 +17,10 @@ class PostController implements ControllerInterface
 
     public function show(int $id) : string
     {
-        return Template::render('/post/show.html.twig', [
-            'title' => 'Post Details',
-            'message' => "Details for post with ID: $id"
-        ]);
+        return API::call("localhost", "GET", ["id" => $id]);
+        // return Template::render('/post/show.html.twig', [
+        //     'title' => 'Post Details',
+        //     'message' => "Details for post with ID: $id"
+        // ]);
     }
 }
