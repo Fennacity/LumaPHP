@@ -1,0 +1,23 @@
+<?php
+#!/usr/bin/env php
+
+if ($argc < 2) {
+    echo "Usage: php run <command>\n";
+    exit(1);
+}
+
+$command = $argv[1];
+
+switch ($command) {
+    case 'luma':
+        // Start the dev server
+        $host = 'localhost';
+        $port = '8000';
+        $docRoot = __DIR__;
+        echo "Starting Luma server at http://$host:$port\n";
+        passthru("php -S $host:$port -t $docRoot");
+        break;
+    default:
+        echo "Unknown command: $command\n";
+        exit(1);
+}
