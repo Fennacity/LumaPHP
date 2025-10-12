@@ -17,7 +17,7 @@ class PostController implements ControllerInterface
 
     public function show(int $id) : string
     {
-        return API::call("localhost", "GET", ["id" => $id]);
+        return API::get("https://httpbin.org/get");
         // return Template::render('/post/show.html.twig', [
         //     'title' => 'Post Details',
         //     'message' => "Details for post with ID: $id"
