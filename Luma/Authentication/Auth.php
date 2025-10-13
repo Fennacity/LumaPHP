@@ -29,7 +29,7 @@ class Auth
     public function register(string $username, string $password, array $userInfo = []): string
     {
         // Ensure the users table exists
-        $columns = [
+        $standardColumns = [
             "id INT AUTO_INCREMENT PRIMARY KEY",
             "username VARCHAR(255) NOT NULL UNIQUE",
             "password VARCHAR(255) NOT NULL",
@@ -38,7 +38,8 @@ class Auth
             "address VARCHAR(255)",
             "phone VARCHAR(50)"
         ];
-        Connection::createTable('users', $columns);
+
+        Connection::createTable('users', !empty($userInfo) ? $userInfo : $standardColumns);
 
         // Check if the username is already taken
         $stmt = $this->db->prepare("SELECT COUNT(*) FROM users WHERE username = :username");
