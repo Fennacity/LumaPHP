@@ -67,12 +67,12 @@ class API implements ApiInterface
         // Error handling for cURL errors
         if (curl_errno($ch)) {
             $error = curl_error($ch);
-            curl_close($ch);
+            unset($ch);
             return json_encode(['error' => $error]);
         }
 
         $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-        curl_close($ch);
+        unset($ch);
 
         // Return the HTTP status code and the decoded response (if JSON), or raw response
         return json_encode([
