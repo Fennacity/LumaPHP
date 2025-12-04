@@ -1,26 +1,21 @@
 <?php
-
 namespace Luma\Database;
 
 use PDO;
+use RuntimeException;
 
 class Connection
 {
-    // Database connection properties
-    private $host;
-    private $username;
-    private $password;
-    private $database;
+    private string $host;
+    private string $username;
+    private string $password;
+    private string $database;
+    private ?PDO $connection = null;
 
     /**
      * Constructor to initialize connection properties.
-     *
-     * @param string $host     The database host
-     * @param string $username The database username
-     * @param string $password The database password
-     * @param string $database The database name
      */
-    public function __construct($host, $username, $password, $database)
+    public function __construct(string $host, string $username, string $password, string $database)
     {
         $this->host = $host;
         $this->username = $username;
@@ -29,40 +24,56 @@ class Connection
     }
 
     /**
-     * Creates a table in the database if it does not already exist.
-     *
-     * @param string $tableName The name of the table to create.
-     * @param array $columns    An array of column definitions, e.g. ["id INT PRIMARY KEY", "name VARCHAR(255)"].
-     *
-     * This method builds a CREATE TABLE IF NOT EXISTS SQL statement using the provided
-     * table name and columns, then executes it using PDO. It outputs a message indicating
-     * the table creation attempt.
+     * Establishing connection to the database.
      */
-    public static function createTable(string $tableName, array $columns): void
+    private function connect(): PDO
     {
-        $query = "CREATE TABLE IF NOT EXISTS $tableName (" . implode(", ", $columns) . ")";
+        if ($this->connection !== null) {
+            return $this->connection;
+        }
 
-        $db = self::connect();
-        $db->exec($query);
-        $db = self::destroyConnection($db);
+        try {
+            $this->connection = new PDO(
+                "{$_ENV['DB_DRIVER']}:host={$this->host};dbname={$this->database}",
+                $this->username,
+                $this->password,
+                [
+                    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+                    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+                ]
+            );
+        } catch (\PDOException $e) {
+            throw new RuntimeException("Database connection failed: " . $e->getMessage());
+        }
+
+        return $this->connection;
     }
 
     /**
-     * Establising connection to the database.
+     * Get the PDO connection instance.
      */
-    public function connect(): \PDO
+    public function getConnection(): PDO
     {
-        return new \PDO("mysql:host={$this->host};dbname={$this->database}", $this->username, $this->password);
+        return $this->connect();
+    }
+
+    /**
+     * Creates a table in the database if it does not already exist.
+     */
+    public function createTable(string $tableName, array $columns): void
+    {
+        // Basic sanitization - you should validate table/column names more thoroughly
+        $tableName = preg_replace('/[^a-zA-Z0-9_]/', '', $tableName);
+        
+        $query = "CREATE TABLE IF NOT EXISTS `$tableName` (" . implode(", ", $columns) . ")";
+        $this->connect()->exec($query);
     }
 
     /**
      * Destroys connection to the database.
-     * @param PDO $connection The database connection variable.
      */
-    public static function destroyConnection(PDO $connection)
+    public function destroyConnection(): void
     {
-        if($connection !== null) {
-            return null;
-        }
+        $this->connection = null;
     }
 }

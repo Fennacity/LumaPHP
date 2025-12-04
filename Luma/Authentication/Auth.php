@@ -6,7 +6,8 @@ use Luma\Database\Connection;
 
 class Auth
 {
-    private $db;
+    private Connection $connection;
+    private \PDO $db;
 
     /**
      * Auth constructor.
@@ -14,7 +15,8 @@ class Auth
      */
     public function __construct(Connection $connection)
     {
-        $this->db = $connection->connect();
+        $this->connection = $connection;
+        $this->db = $connection->getConnection();
     }
 
     /**
@@ -39,7 +41,7 @@ class Auth
             "phone VARCHAR(50)"
         ];
 
-        Connection::createTable('users', !empty($userInfo) ? $userInfo : $standardColumns);
+        $this->connection->createTable('users', !empty($userInfo) ? $userInfo : $standardColumns);
 
         // Check if the username is already taken
         $stmt = $this->db->prepare("SELECT COUNT(*) FROM users WHERE username = :username");
