@@ -1,7 +1,11 @@
 {% block nav %}
     <nav>
         <ul>
-            <li><a href="{{ base_path }}/">Home</a></li>
+            {% for route in routes %}
+                {% if route.inNav is defined and route.inNav %}
+                    <li><a href="{{ route.path }}">{{ route.title }}</a></li>
+                {% endif %}
+            {% endfor %}
         </ul>
     </nav>
 {% endblock %}

@@ -5,11 +5,11 @@ namespace App\Controllers;
 use Luma\Templating\Template;
 use Luma\Utilities\Utilities;
 
-class HomeController extends Controller
+class AboutController extends Controller
 {
     public function index() : string
     {
-        return Template::render('/home/index.html.twig', [
+        return Template::render('/about/index.html.twig', [
             'project_name' => Utilities::underscoreToSpace($_ENV['PROJECT_NAME'] ?? 'LumaPHP_Application'),
             'page_title' => Utilities::getCurrentControllerName(__FILE__),
         ]);

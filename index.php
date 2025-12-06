@@ -1,5 +1,4 @@
 <?php
-
 // Autoload Composer dependencies
 require_once __DIR__ . '/vendor/autoload.php';
 
@@ -7,10 +6,14 @@ require_once __DIR__ . '/vendor/autoload.php';
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
+// Set error reporting based on environment variables (move to top)
+error_reporting($_ENV['ERROR_REPORTING']);
+ini_set('display_errors', $_ENV['DISPLAY_ERRORS']);
+ini_set('display_startup_errors', $_ENV['DISPLAY_STARTUP_ERRORS']);
+
 // Import necessary classes
-use App\App;
-use Luma\Framework;
 use Luma\Routing\Router;
+use Luma\Templating\Template;
 
 // Get the base path from environment variables (used for routing and URLs)
 $basePath = '/' . $_ENV['BASE_PATH'] ?? '';
@@ -20,6 +23,9 @@ $routes = require __DIR__ . '/App/routes.php';
 
 // Create a new Router instance with the loaded routes
 $router = new Router($routes);
+
+// Add routes to template AFTER router is created
+Template::addRoutesToTemplate($routes->getRoutes());
 
 // Get the HTTP request method and URI path
 $method = $_SERVER['REQUEST_METHOD'];
@@ -33,11 +39,3 @@ if ($basePath && strpos($uri, $basePath) === 0) {
 
 // Dispatch the request to the appropriate controller/action and output the response
 echo $router->dispatch($method, $uri);
-
-// Initialize the application (may perform additional setup)
-$app = new App(new Framework);
-
-// Set error reporting based on environment variables
-error_reporting($_ENV['ERROR_REPORTING']);
-ini_set('display_errors', $_ENV['DISPLAY_ERRORS']);
-ini_set('display_startup_errors', $_ENV['DISPLAY_STARTUP_ERRORS']);

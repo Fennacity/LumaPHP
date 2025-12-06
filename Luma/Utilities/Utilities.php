@@ -5,6 +5,16 @@ namespace Luma\Utilities;
 class Utilities
 {
     /**
+     * Gets the name of the current file without the extension and "Controller" suffix.
+     *
+     * @return string The current file name without extension and "Controller" suffix.
+     */
+    public static function getCurrentControllerName(string $currentFile): string
+    {
+        return str_replace("Controller", '', basename($currentFile, '.php'));
+    }
+
+    /**
      * Converts a string to Title Case.
      *
      * @param string $string The input string.
