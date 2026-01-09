@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-abstract class Controller
+class Controller
 {
-    abstract public function index() : string;
+   
 }

@@ -9,7 +9,7 @@ class HomeController extends Controller
 {
     public function index() : string
     {
-        return Template::render('/home/index.html.twig', [
+        return Template::render('/'. strtolower(Utilities::getCurrentControllerName(__FILE__)) .'/index.html.twig', [
             'project_name' => Utilities::underscoreToSpace($_ENV['PROJECT_NAME'] ?? 'LumaPHP_Application'),
             'page_title' => Utilities::getCurrentControllerName(__FILE__),
         ]);
